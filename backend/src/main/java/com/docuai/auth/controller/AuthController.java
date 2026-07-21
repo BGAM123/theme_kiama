@@ -3,6 +3,7 @@ package com.docuai.auth.controller;
 import com.docuai.auth.dto.AuthDto;
 import com.docuai.auth.service.AuthService;
 import com.docuai.common.dto.ApiResponse;
+import com.docuai.core.domain.User;
 import com.docuai.security.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -73,4 +74,3 @@ public class AuthController {
                 .build();
     }
 }
-import com.docuai.core.domain.User;

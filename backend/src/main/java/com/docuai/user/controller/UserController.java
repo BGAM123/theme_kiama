@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -67,4 +68,3 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 }
-import java.util.Map;

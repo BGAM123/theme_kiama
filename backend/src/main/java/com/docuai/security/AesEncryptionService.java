@@ -8,6 +8,7 @@ import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.ByteBuffer;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Base64;
 
 @Service
@@ -70,4 +71,3 @@ public class AesEncryptionService {
         }
     }
 }
-import java.util.Arrays;
