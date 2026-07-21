@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  pattern:
+    console: ""
+  level:
+    com.docuai: INFO
+    org.hibernate.SQL: ERROR
+    org.springframework.security: WARN
