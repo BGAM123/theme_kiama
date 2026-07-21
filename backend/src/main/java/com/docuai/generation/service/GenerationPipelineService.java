@@ -1,5 +1,13 @@
 package com.docuai.generation.service;
 
+import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.docuai.common.audit.AuditService;
 import com.docuai.common.exception.AppException;
 import com.docuai.common.exception.ErrorCode;
@@ -10,14 +18,6 @@ import com.docuai.core.repository.GeneratedDocumentRepository;
 import com.docuai.generation.dto.GenerationDto;
 import com.docuai.generation.port.DocumentExportPort;
 import com.docuai.infrastructure.storage.StoragePort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.ByteArrayInputStream;
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class GenerationPipelineService {
@@ -51,18 +51,22 @@ public class GenerationPipelineService {
         DocumentType docType = documentTypeRepository.findById(request.getDocumentTypeId())
                 .orElseThrow(() -> new AppException(ErrorCode.DOCUMENT_TYPE_NOT_FOUND, "DocumentType introuvable"));
 
-        GeneratedDocument doc = GeneratedDocument.builder()
+        GeneratedDocument.GeneratedDocumentBuilder docBuilder = GeneratedDocument.builder()
                 .documentType(docType)
-                .name(request.getName() != null ? request.getName() : "Generated Doc")
-                .status(GeneratedDocument.Status.GENERATED)
-                .fileKey(objectName)
-                .createdBy(userId)
-                .createdAt(ZonedDateTime.now())
-                .build();
-                
+                .title(request.getName() != null ? request.getName() : "Generated Doc")
+                .status(GeneratedDocument.Status.EXPORTED);
+
+        switch (request.getFormat().toLowerCase()) {
+            case "docx" -> docBuilder.exportDocxKey(objectName);
+            case "pdf" -> docBuilder.exportPdfKey(objectName);
+            case "md" -> docBuilder.exportMdKey(objectName);
+            default -> throw new AppException(ErrorCode.EXPORT_FAILED, "Format non supporté: " + request.getFormat());
+        }
+
+        GeneratedDocument doc = docBuilder.build();
         doc = generatedDocRepo.save(doc);
         
-        auditService.log(userId, userEmail, "DOCUMENT_GENERATED", "GeneratedDocument", doc.getId(), doc.getName(), "Généré en " + request.getFormat());
+        auditService.log(userId, userEmail, "DOCUMENT_GENERATED", "GeneratedDocument", doc.getId(), doc.getTitle(), "Généré en " + request.getFormat());
         
         return doc;
     }

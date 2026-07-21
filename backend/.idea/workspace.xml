@@ -5,12 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4737a2e-9f6e-4fd2-82d5-60f1f5fbf44e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/auth/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/security/AesEncryptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/security/AesEncryptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/ai/dto/AiModelConfigDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/ai/dto/AiModelConfigDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/chat/service/ConversationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/chat/service/ConversationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/config/JpaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/config/JpaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/docuai/generation/service/GenerationPipelineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/docuai/generation/service/GenerationPipelineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +39,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/LENOVO/Desktop/theme_kiama/backend",
@@ -48,6 +55,11 @@
     "nodejs_package_manager_path": "npm",
     "spring.configuration.checksum": "b43fdd98b1fd705ae4c3a10cf25aad8a",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -68,7 +80,9 @@
       <option name="presentableId" value="Default" />
       <updated>1784629669876</updated>
       <workItem from="1784629671427" duration="1564000" />
-      <workItem from="1784636117026" duration="1305000" />
+      <workItem from="1784636117026" duration="2499000" />
+      <workItem from="1784642494660" duration="680000" />
+      <workItem from="1784646842877" duration="2753000" />
     </task>
     <servers />
   </component>

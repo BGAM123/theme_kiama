@@ -1,23 +1,28 @@
 package com.docuai.chat.service;
 
+import java.time.ZonedDateTime;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.docuai.ai.factory.AiProviderFactory;
 import com.docuai.ai.port.AiProviderPort;
 import com.docuai.chat.dto.ChatDto;
 import com.docuai.common.exception.AppException;
 import com.docuai.common.exception.ErrorCode;
-import com.docuai.core.domain.*;
+import com.docuai.core.domain.AiModelConfig;
+import com.docuai.core.domain.Conversation;
+import com.docuai.core.domain.DocumentType;
+import com.docuai.core.domain.Message;
+import com.docuai.core.domain.User;
 import com.docuai.core.repository.AiModelConfigRepository;
 import com.docuai.core.repository.ConversationRepository;
 import com.docuai.core.repository.DocumentTypeRepository;
 import com.docuai.core.repository.MessageRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import reactor.core.publisher.Flux;
+import com.docuai.core.repository.UserRepository;
 
-import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import reactor.core.publisher.Flux;
 
 @Service
 public class ConversationService {
@@ -26,13 +31,15 @@ public class ConversationService {
     private final MessageRepository messageRepository;
     private final DocumentTypeRepository documentTypeRepository;
     private final AiModelConfigRepository aiModelConfigRepository;
+    private final UserRepository userRepository;
     private final AiProviderFactory aiProviderFactory;
 
-    public ConversationService(ConversationRepository conversationRepository, MessageRepository messageRepository, DocumentTypeRepository documentTypeRepository, AiModelConfigRepository aiModelConfigRepository, AiProviderFactory aiProviderFactory) {
+    public ConversationService(ConversationRepository conversationRepository, MessageRepository messageRepository, DocumentTypeRepository documentTypeRepository, AiModelConfigRepository aiModelConfigRepository, UserRepository userRepository, AiProviderFactory aiProviderFactory) {
         this.conversationRepository = conversationRepository;
         this.messageRepository = messageRepository;
         this.documentTypeRepository = documentTypeRepository;
         this.aiModelConfigRepository = aiModelConfigRepository;
+        this.userRepository = userRepository;
         this.aiProviderFactory = aiProviderFactory;
     }
 
@@ -45,12 +52,13 @@ public class ConversationService {
         } else {
             DocumentType docType = documentTypeRepository.findById(request.getDocumentTypeId())
                     .orElseThrow(() -> new AppException(ErrorCode.DOCUMENT_TYPE_NOT_FOUND, "Doc type not found"));
-                    
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND, "User not found"));
+            
             conversation = Conversation.builder()
-                    .userId(userId)
+                    .user(user)
                     .documentType(docType)
                     .title("Génération - " + docType.getName())
-                    .createdAt(ZonedDateTime.now())
                     .build();
             conversation = conversationRepository.save(conversation);
         }

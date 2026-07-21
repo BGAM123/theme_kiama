@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 public class AiModelConfigDto {
@@ -18,7 +17,7 @@ public class AiModelConfigDto {
         private UUID id;
         private String provider;
         private String modelName;
-        private BigDecimal temperature;
+        private Double temperature;
         private Integer maxTokens;
         private Boolean isDefault;
     }
@@ -31,7 +30,7 @@ public class AiModelConfigDto {
         private String provider;
         private String modelName;
         private String apiKey; // Plaintext passing in, will be encrypted in DB
-        private BigDecimal temperature;
+        private Double temperature;
         private Integer maxTokens;
         private Boolean isDefault;
     }

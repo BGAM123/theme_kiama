@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
@@ -25,12 +25,6 @@ public class JpaConfig {
 
     @Bean(name = "virtualThreadExecutor")
     public Executor virtualThreadExecutor() {
-        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        // Configuration for Virtual Threads
-        // ThreadPoolTaskExecutor supports virtual threads since Spring Framework 6.1
-        // (Spring Boot 3.2+)
-        executor.setVirtualThreads(true);
-        executor.initialize();
-        return executor;
+        return Executors.newVirtualThreadPerTaskExecutor();
     }
 }
