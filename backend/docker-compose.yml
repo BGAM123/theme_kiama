@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   backend:
     build: .
@@ -13,10 +15,10 @@ services:
       MINIO_ENDPOINT: http://minio:9000
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin
-      SECURITY_JWT_PRIVATE_KEY: ${SECURITY_JWT_PRIVATE_KEY:-default_private_key}
-      SECURITY_JWT_PUBLIC_KEY: ${SECURITY_JWT_PUBLIC_KEY:-default_public_key}
-      SECURITY_AES_SECRET: ${SECURITY_AES_SECRET:-default_aes_secret}
-      CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:3000"
+      SECURITY_JWT_PRIVATE_KEY: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7VJTpVvCJjQJXqJqJqJqJqJqJqJqJqJqJ
+      SECURITY_JWT_PUBLIC_KEY: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu1JU6VbwiY0CV6iWqWqWqWqWqWqWqWqWq
+      SECURITY_AES_SECRET: MySuperSecretKey1234567890123456
+      CORS_ALLOWED_ORIGINS: "http://localhost:5173,http://localhost:3000,http://localhost:8080"
       EXTRACTOR_SERVICE_URL: http://extractor:8001
       EXTRACTOR_USE_MOCK: "true"
       SPRING_PROFILES_ACTIVE: dev
@@ -28,11 +30,14 @@ services:
       minio:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/actuator/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 60s
+      start_period: 120s
+    restart: unless-stopped
+    networks:
+      - app-network
 
   postgres:
     image: pgvector/pgvector:pg16
@@ -54,6 +59,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    networks:
+      - app-network
 
   redis:
     image: redis:7-alpine
@@ -67,6 +75,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    networks:
+      - app-network
 
   minio:
     image: minio/minio:latest
@@ -84,8 +95,15 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    networks:
+      - app-network
 
 volumes:
   postgres-data:
   redis-data:
   minio-data:
+
+networks:
+  app-network:
+    driver: bridge

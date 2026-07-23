@@ -35,3 +35,21 @@ export const CardFooter = React.forwardRef<HTMLDivElement, CardProps>(
     ),
 );
 CardFooter.displayName = 'CardFooter';
+
+export const CardTitle = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
+    ({ className, ...props }, ref) => (
+        <h3
+            ref={ref}
+            className={cn('text-lg font-semibold leading-none tracking-tight text-slate-900', className)}
+            {...props}
+        />
+    ),
+);
+CardTitle.displayName = 'CardTitle';
+
+export const CardDescription = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
+    ({ className, ...props }, ref) => (
+        <p ref={ref} className={cn('text-sm text-slate-500', className)} {...props} />
+    ),
+);
+CardDescription.displayName = 'CardDescription';

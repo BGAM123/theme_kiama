@@ -13,7 +13,7 @@ export function useLogin() {
         },
         onSuccess: (data) => {
             localStorage.setItem('accessToken', data.accessToken);
-            localStorage.setItem('refreshToken', data.refreshToken);
+            // Le refresh token est stocké automatiquement dans un cookie HTTP-only par le backend
             toast.success('Connexion réussie');
             navigate('/dashboard', { replace: true });
         },

@@ -5,7 +5,7 @@ import { loginSchema, LoginFormData } from './auth.schema';
 import { useLogin } from './useAuth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { FormControl, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Eye, EyeOff } from 'lucide-react';
@@ -41,88 +41,79 @@ export function LoginPage() {
                     </p>
                 </CardHeader>
                 <CardContent className="px-8 pb-8">
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                            {isPending ? (
-                                <div className="space-y-4">
-                                    <div className="space-y-2">
-                                        <Skeleton className="h-4 w-16" />
-                                        <Skeleton className="h-10 w-full" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Skeleton className="h-4 w-24" />
-                                        <Skeleton className="h-10 w-full" />
-                                    </div>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        {isPending ? (
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <Skeleton className="h-4 w-16" />
+                                    <Skeleton className="h-10 w-full" />
                                 </div>
-                            ) : (
-                                <>
-                                    <FormField
-                                        control={form.control}
-                                        name="email"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-semibold text-slate-700">Adresse e-mail</FormLabel>
-                                                <FormControl>
-                                                    <Input
-                                                        placeholder="nom@entreprise.fr"
-                                                        type="email"
-                                                        autoComplete="email"
-                                                        className="bg-slate-50/50 hover:bg-white focus:bg-white transition-colors"
-                                                        {...field}
-                                                    />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="password"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel className="font-semibold text-slate-700">Mot de passe</FormLabel>
-                                                <FormControl>
-                                                    <div className="relative">
-                                                        <Input
-                                                            placeholder="••••••••"
-                                                            type={showPassword ? "text" : "password"}
-                                                            autoComplete="current-password"
-                                                            className="bg-slate-50/50 hover:bg-white focus:bg-white transition-colors pr-10"
-                                                            {...field}
-                                                        />
-                                                        <Button
-                                                            type="button"
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            className="absolute right-0 top-0 h-10 w-10 text-slate-400 hover:text-slate-600 rounded-l-none"
-                                                            onClick={() => setShowPassword(!showPassword)}
-                                                        >
-                                                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                                                        </Button>
-                                                    </div>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </>
-                            )}
-
-                            <div className="flex items-center justify-between pt-2">
-                                <a href="/forgot-password" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-colors focus-visible:outline-none focus-visible:underline">
-                                    Mot de passe oublié ?
-                                </a>
+                                <div className="space-y-2">
+                                    <Skeleton className="h-4 w-24" />
+                                    <Skeleton className="h-10 w-full" />
+                                </div>
                             </div>
+                        ) : (
+                            <>
+                                <FormItem>
+                                    <FormLabel className="font-semibold text-slate-700">Adresse e-mail</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder="nom@entreprise.fr"
+                                            type="email"
+                                            autoComplete="email"
+                                            className="bg-slate-50/50 hover:bg-white focus:bg-white transition-colors"
+                                            {...form.register("email")}
+                                        />
+                                    </FormControl>
+                                    {form.formState.errors.email && (
+                                        <FormMessage>{form.formState.errors.email.message}</FormMessage>
+                                    )}
+                                </FormItem>
 
-                            <Button
-                                type="submit"
-                                className={cn("w-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all", isPending && "animate-pulse")}
-                                disabled={isPending}
-                            >
-                                {isPending ? "Connexion en cours..." : "Se connecter"}
-                            </Button>
-                        </form>
-                    </Form>
+                                <FormItem>
+                                    <FormLabel className="font-semibold text-slate-700">Mot de passe</FormLabel>
+                                    <FormControl>
+                                        <div className="relative">
+                                            <Input
+                                                placeholder="••••••••"
+                                                type={showPassword ? "text" : "password"}
+                                                autoComplete="current-password"
+                                                className="bg-slate-50/50 hover:bg-white focus:bg-white transition-colors pr-10"
+                                                {...form.register("password")}
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="ghost"
+                                                size="icon"
+                                                className="absolute right-0 top-0 h-10 w-10 text-slate-400 hover:text-slate-600 rounded-l-none"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                            >
+                                                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                            </Button>
+                                        </div>
+                                    </FormControl>
+                                    {form.formState.errors.password && (
+                                        <FormMessage>{form.formState.errors.password.message}</FormMessage>
+                                    )}
+                                </FormItem>
+                            </>
+                        )}
+
+                        <div className="flex items-center justify-between pt-2">
+                            <a href="/forgot-password" className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition-colors focus-visible:outline-none focus-visible:underline">
+                                Mot de passe oublié ?
+                            </a>
+                        </div>
+
+                        <Button
+                            type="submit"
+                            className={cn("w-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-md transition-all", isPending && "animate-pulse")}
+                            disabled={isPending}
+                        >
+                            {isPending ? "Connexion en cours..." : "Se connecter"}
+                        </Button>
+                    </form>
                 </CardContent>
             </Card>
         </div>

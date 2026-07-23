@@ -14,11 +14,9 @@ export default defineConfig({
         port: 3000,
         open: false,
         proxy: {
-            // Forward to backend when mocks are off
             '/api': {
-                target: process.env.VITE_API_URL ?? 'http://localhost:8080',
+                target: 'http://localhost:8080',
                 changeOrigin: true,
-                rewrite: (path) => path.replace(/^\/api/, ''),
             },
         },
     },

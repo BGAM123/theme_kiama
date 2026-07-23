@@ -130,6 +130,7 @@ com\docuai\core\domain\AiModelConfig.class
 com\docuai\config\ResilienceConfig.class
 com\docuai\core\domain\GeneratedDocument$Status.class
 com\docuai\core\domain\Conversation$Status.class
+com\docuai\config\CorsConfig.class
 com\docuai\core\repository\AuditLogRepository.class
 com\docuai\common\exception\GlobalExceptionHandler$1.class
 com\docuai\core\domain\Category.class
