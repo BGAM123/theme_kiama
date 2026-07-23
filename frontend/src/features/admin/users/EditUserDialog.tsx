@@ -1,24 +1,27 @@
 import React from 'react';
-import { useCreateUser } from './useAdminUsers';
+import { useUpdateUser } from './useAdminUsers';
 import { UserFormDialog } from './UserForm';
-import { createUserSchema } from './user.schema';
+import { updateUserSchema } from './user.schema';
+import { UserDTO } from '@/types/auth.types';
 
-interface CreateUserDialogProps {
+interface EditUserDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  user: UserDTO | null;
 }
 
-export function CreateUserDialog({ open, onOpenChange }: CreateUserDialogProps) {
-  const { mutate, isPending } = useCreateUser();
+export function EditUserDialog({ open, onOpenChange, user }: EditUserDialogProps) {
+  const { mutate, isPending } = useUpdateUser();
 
   const handleSubmit = (data: any) => {
+    if (!user) return;
+    
     mutate(
       {
+        id: user.id,
         firstName: data.firstName,
         lastName: data.lastName,
-        email: data.email,
         role: data.role,
-        password: data.password || undefined, // Envoyer undefined si vide
       },
       {
         onSuccess: () => {
@@ -32,10 +35,11 @@ export function CreateUserDialog({ open, onOpenChange }: CreateUserDialogProps) 
     <UserFormDialog
       open={open}
       onOpenChange={onOpenChange}
-      mode="create"
+      mode="edit"
+      initialData={user || {}}
       onSubmit={handleSubmit}
       isSubmitting={isPending}
-      schema={createUserSchema}
+      schema={updateUserSchema}
     />
   );
 }
