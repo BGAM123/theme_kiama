@@ -33,7 +33,7 @@ public class AdminUserController {
             @RequestParam(required = false) String search) {
         Pageable pageable = PageRequest.of(page, size);
         Page<AdminUserDto.Response> usersPage = adminUserService.listUsers(pageable, search);
-        return ResponseEntity.ok(ApiResponse.paginated(
+        return ResponseEntity.ok(ApiResponse.<List<AdminUserDto.Response>>paginated(
                 usersPage.getContent(), page, size, usersPage.getTotalElements(), usersPage.getTotalPages()
         ));
     }

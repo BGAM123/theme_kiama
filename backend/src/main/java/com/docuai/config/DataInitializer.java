@@ -39,7 +39,7 @@ public class DataInitializer implements CommandLineRunner {
                 .map(name -> {
                     return permissionRepository.findByName(name)
                             .orElseGet(() -> permissionRepository.save(
-                                    Permission.builder().name(name).description("Permission: " + name).build()
+                                    Permission.builder().name(name).label("Permission: " + name).build()
                             ));
                 })
                 .collect(Collectors.toList());
