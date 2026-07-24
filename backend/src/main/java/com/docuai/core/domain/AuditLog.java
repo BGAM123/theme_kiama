@@ -18,7 +18,7 @@ public class AuditLog {
     private UUID entityId;
     private String entityLabel;
     private String detail;
-    @Column(columnDefinition = "inet")
+    @Column(columnDefinition = "VARCHAR(45)")
     private String ipAddress;
     private String userAgent;
     private String traceId;
