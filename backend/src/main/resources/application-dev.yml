@@ -12,3 +12,7 @@ logging:
   level:
     com.docuai: DEBUG
     org.hibernate.SQL: DEBUG
+
+spring.ai:
+  mistralai:
+    api-key: "dummy-key-for-dev"

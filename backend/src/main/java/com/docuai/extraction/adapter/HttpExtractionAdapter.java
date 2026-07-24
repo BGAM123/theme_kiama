@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Component("remoteExtractionPort")
 @ConditionalOnProperty(name = "extraction.use-mock", havingValue = "false", matchIfMissing = true)
 public class HttpExtractionAdapter implements ExtractionPort {
 

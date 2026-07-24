@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Component
+@Component("remoteExtractionPort")
 @ConditionalOnProperty(name = "extraction.use-mock", havingValue = "true")
 public class MockExtractionAdapter implements ExtractionPort {
 

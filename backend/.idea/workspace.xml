@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4737a2e-9f6e-4fd2-82d5-60f1f5fbf44e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/chunk-FHF6BKNB.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/chunk-FHF6BKNB.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/msw.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/msw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/msw_browser.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/msw_browser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/recharts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps/recharts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ui/card.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ui/card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/601f44e7-05f1-4636-8804-a5b9bce8b9d4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/601f44e7-05f1-4636-8804-a5b9bce8b9d4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/.vite/deps_temp_ffb67fcb/package.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +81,7 @@
       <workItem from="1784636117026" duration="2499000" />
       <workItem from="1784642494660" duration="680000" />
       <workItem from="1784646842877" duration="3567000" />
+      <workItem from="1784807668060" duration="1714000" />
     </task>
     <servers />
   </component>

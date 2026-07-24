@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class AdminUserController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<Page<AdminUserDto.Response>>> listUsers(
+    public ResponseEntity<ApiResponse<List<AdminUserDto.Response>>> listUsers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size,
             @RequestParam(required = false) String search) {

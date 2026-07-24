@@ -39,7 +39,7 @@ public class ExtractionPipelineService {
     private final ObjectMapper objectMapper;
     private final Tika tika = new Tika();
 
-    public ExtractionPipelineService(ExtractionJobRepository jobRepository, DocumentTypeRepository documentTypeRepository, DocumentStructureRepository structureRepository, StoragePort storagePort, ExtractionPort remoteExtractionPort, DocxExtractionAdapter docxAdapter, RedisTemplate<String, Object> redisTemplate, NotificationService notificationService, AuditService auditService, ObjectMapper objectMapper) {
+    public ExtractionPipelineService(ExtractionJobRepository jobRepository, DocumentTypeRepository documentTypeRepository, DocumentStructureRepository structureRepository, StoragePort storagePort, @org.springframework.beans.factory.annotation.Qualifier("remoteExtractionPort") ExtractionPort remoteExtractionPort, DocxExtractionAdapter docxAdapter, RedisTemplate<String, Object> redisTemplate, NotificationService notificationService, AuditService auditService, ObjectMapper objectMapper) {
         this.jobRepository = jobRepository;
         this.documentTypeRepository = documentTypeRepository;
         this.structureRepository = structureRepository;

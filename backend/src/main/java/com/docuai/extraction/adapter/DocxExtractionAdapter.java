@@ -4,6 +4,7 @@ import com.docuai.documenttype.dto.StructureNodeDTO;
 import com.docuai.extraction.port.ExtractionPort;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
